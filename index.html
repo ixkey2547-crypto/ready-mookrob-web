@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ready-หมูกรอบ | หมูกรอบคุณภาพพรีเมียม</title>
+  <meta name="description" content="หมูกรอบคุณภาพพรีเมียม สำหรับร้านอาหาร ร้านข้าว และผู้ค้าส่ง" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Noto+Serif+Thai:wght@400;600;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --red:        #8B1A1A;
+      --red-dark:   #5C0F0F;
+      --red-light:  #B22222;
+      --gold:       #C9A84C;
+      --gold-light: #E6C96A;
+      --gold-pale:  #F5E6C0;
+      --cream:      #FBF6ED;
+      --white:      #FFFFFF;
+      --gray-100:   #F7F3EE;
+      --gray-200:   #EDE8DF;
+      --gray-500:   #9A8F83;
+      --gray-700:   #4A3F35;
+      --gray-900:   #1C1209;
+      --shadow-sm:  0 2px 8px rgba(139,26,26,0.08);
+      --shadow-md:  0 6px 24px rgba(139,26,26,0.14);
+      --shadow-lg:  0 16px 48px rgba(139,26,26,0.18);
+      --radius:     14px;
+      --radius-sm:  8px;
+      --transition: 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Sarabun', sans-serif;
+      color: var(--gray-900);
+      background: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ===== PAGE SYSTEM ===== */
+    .page {
+      position: fixed;
+      inset: 0;
+      overflow-y: auto;
+      opacity: 0;
+      transform: translateY(18px);
+      pointer-events: none;
+      transition: opacity var(--transition), transform var(--transition);
+      background: var(--cream);
+      z-index: 1;
+    }
+    .page.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+      z-index: 2;
+    }
+    .page.leaving {
+      opacity: 0;
+      transform: translateY(-12px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(251,246,237,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1.5px solid var(--gold-pale);
+      padding: 0 2rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 16px rgba(139,26,26,0.06);
+    }
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+    .navbar-logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+    }
+    .navbar-logo-text {
+      font-family: 'Noto Serif Thai', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--red-dark);
+      line-height: 1.2;
+    }
+    .navbar-logo-text span {
+      display: block;
+      font-size: 0.7rem;
+      font-family: 'Sarabun', sans-serif;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .navbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .navbar-nav a, .navbar-nav button {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      transition: color var(--transition), background var(--transition);
+      background: none;
+    }
+    .navbar-nav a:hover, .navbar-nav button:hover {
+      color: var(--red);
+      background: var(--gold-pale);
+    }
+    .navbar-cta {
+      background: linear-gradient(135deg, var(--red), var(--red-dark)) !important;
+      color: var(--white) !important;
+      font-weight: 600 !important;
+      padding: 0.45rem 1.2rem !important;
+      border-radius: 50px !important;
+      box-shadow: 0 3px 12px rgba(139,26,26,0.25) !important;
+      transition: transform var(--transition), box-shadow var(--transition) !important;
+    }
+    .navbar-cta:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 6px 20px rgba(139,26,26,0.35) !important;
+      background: var(--red-light) !important;
+    }
+    /* Mobile hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--red-dark);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 68px;
+      left: 0; right: 0;
+      background: rgba(251,246,237,0.98);
+      border-bottom: 1.5px solid var(--gold-pale);
+      padding: 1rem;
+      flex-direction: column;
+      gap: 0.5rem;
+      box-shadow: var(--shadow-md);
+      z-index: 99;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a, .mobile-menu button {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      text-align: left;
+      width: 100%;
+      transition: background var(--transition), color var(--transition);
+    }
+    .mobile-menu a:hover, .mobile-menu button:hover {
+      background: var(--gold-pale);
+      color: var(--red);
+    }
+
+    /* ===== BUTTON COMPONENTS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Sarabun', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+      letter-spacing: 0.01em;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(139,26,26,0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(139,26,26,0.38);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--red);
+      border: 2px solid var(--red);
+    }
+    .btn-outline:hover {
+      background: var(--red);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(139,26,26,0.22);
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), #B8902B);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(201,168,76,0.35);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201,168,76,0.45);
+    }
+    .btn-sm {
+      font-size: 0.82rem;
+      padding: 0.5rem 1.1rem;
+    }
+
+    /* ===== SECTION BASE ===== */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .section-label::before, .section-label::after {
+      content: '';
+      display: block;
+      height: 1.5px;
+      width: 22px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+    .section-title {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--red-dark);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--gray-500);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ===== BADGE ===== */
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.65rem;
+      border-radius: 50px;
+    }
+    .badge-red { background: var(--red); color: #fff; }
+    .badge-gold { background: var(--gold); color: #fff; }
+    .badge-green { background: #2E7D32; color: #fff; }
+
+    /* ===== DIVIDER ===== */
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+    .gold-divider::before, .gold-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+    .gold-divider::after { background: linear-gradient(to left, transparent, var(--gold)); }
+    .gold-divider span {
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+    }
+
+    /* ============================
+       PAGE 1 — HOME
+    ============================ */
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 68px);
+      background: linear-gradient(135deg, var(--red-dark) 0%, #6B1010 45%, #3D0808 100%);
+      display: flex;
+      align-items: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 70% at 80% 50%, rgba(201,168,76,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(255,255,255,0.03) 0%, transparent 60%);
+    }
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+      background-size: 32px 32px;
+    }
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(201,168,76,0.18);
+      border: 1px solid rgba(201,168,76,0.35);
+      color: var(--gold-light);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.18;
+      margin-bottom: 1.2rem;
+    }
+    .hero-title .accent { color: var(--gold-light); }
+    .hero-desc {
+      font-size: 1.08rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.75;
+      margin-bottom: 2.2rem;
+      max-width: 480px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(201,168,76,0.2);
+    }
+    .hero-stat-num {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+    .hero-stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.4;
+    }
+    .hero-image-wrap {
+      position: relative;
+    }
+    .hero-img-frame {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 24px 72px rgba(0,0,0,0.45), 0 0 0 3px rgba(201,168,76,0.25);
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+    .hero-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-img-badge {
+      position: absolute;
+      bottom: -16px;
+      left: -16px;
+      background: linear-gradient(135deg, var(--gold), #B8902B);
+      color: var(--white);
+      padding: 0.75rem 1.2rem;
+      border-radius: 14px;
+      box-shadow: var(--shadow-md);
+    }
+    .hero-img-badge .badge-big { font-family: 'Noto Serif Thai', serif; font-size: 1.4rem; font-weight: 700; display: block; }
+    .hero-img-badge .badge-small { font-size: 0.75rem; opacity: 0.85; }
+
+    /* FEATURES */
+    .features { background: var(--white); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .feature-card {
+      background: var(--cream);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 2rem 1.6rem;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--gold-pale);
+    }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 6px 18px rgba(139,26,26,0.22);
+    }
+    .feature-title {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--red-dark);
+      margin-bottom: 0.5rem;
+    }
+    .feature-desc { font-size: 0.88rem; color: var(--gray-500); line-height: 1.65; }
+
+    /* HOW IT WORKS */
+    .how { background: var(--cream); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0;
+      margin-top: 3rem;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold-pale), var(--gold), var(--gold-pale));
+      z-index: 0;
+    }
+    .step {
+      text-align: center;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .step-num {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      color: var(--white);
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 6px 20px rgba(139,26,26,0.28);
+      border: 4px solid var(--cream);
+    }
+    .step-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .step-title {
+      font-family: 'Noto Serif Thai', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--red-dark);
+      margin-bottom: 0.4rem;
+    }
+    .step-desc { font-size: 0.85rem; color: var(--gray-500); line-height: 1.6; }
+
+    /* REVIEWS */
+    .reviews { background: var(--red-dark); }
+    .reviews .section-title { color: var(--gold-light); }
+    .reviews .section-subtitle { color: rgba(255,255,255,0.6); }
+    .reviews .section-label { color: var(--gold-light); }
+    .reviews .section-label::before, .reviews .section-label::after { background: var(--gold-light); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .review-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      transition: transform var(--transition), background var(--transition);
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.1);
+    }
+    .review-stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 1rem; }
+    .review-text {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 1.2rem;
+    }
+    .review-author { display: flex; align-items: center; gap: 0.75rem; }
+    .review-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--gold-pale);
+      border: 2px solid rgba(201,168,76,0.4);
+      flex-shrink: 0;
+    }
+    .review-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .review-name { font-weight: 700; font-size: 0.9rem; color: var(--gold-light); }
+    .review-role { font-size: 0.78rem; color: rgba(255,255,255,0.45); }
+
+    /* FEATURED PRODUCTS (on home) */
+    .featured-products { background: var(--white); }
+    .product-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    /* PRODUCT CARD */
+    .product-card {
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .product-card-img {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .product-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-card-img img { transform: scale(1.07); }
+    .product-card-badges {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .product-card-body { padding: 1.2rem 1.4rem 1.4rem; }
+    .product-name {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.3rem;
+    }
+    .product-desc { font-size: 0.83rem; color: var(--gray-500); line-height: 1.55; margin-bottom: 0.9rem; }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .product-price {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--red);
+    }
+    .product-price span { font-size: 0.78rem; font-weight: 400; color: var(--gray-500); font-family: 'Sarabun', sans-serif; }
+    .product-actions { display: flex; gap: 0.5rem; }
+
+    /* FOOTER */
+    .footer {
+      background: var(--gray-900);
+      color: rgba(255,255,255,0.7);
+      padding: 3.5rem 2rem 2rem;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 2.5rem;
+    }
+    .footer-logo-text {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 0.75rem;
+    }
+    .footer-desc { font-size: 0.85rem; line-height: 1.7; margin-bottom: 1.2rem; }
+    .footer-social { display: flex; gap: 0.6rem; }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: background var(--transition), color var(--transition);
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-social a:hover { background: var(--gold); color: #fff; }
+    .footer-heading {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 0.55rem; }
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--gold-light); }
+    .footer-contact { display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.875rem; }
+    .footer-contact-item .icon { font-size: 1rem; margin-top: 1px; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* ============================
+       PAGE 2 — PRODUCTS
+    ============================ */
+
+    /* Product Hero */
+    .products-hero {
+      background: linear-gradient(135deg, var(--red-dark), #3D0808);
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .products-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 90% 50%, rgba(201,168,76,0.12) 0%, transparent 65%);
+    }
+    .products-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .products-hero-inner .section-label { margin-top: 0; }
+    .products-hero-inner .section-title { color: var(--white); }
+    .products-hero-inner .section-subtitle { color: rgba(255,255,255,0.65); margin-top: 0.5rem; }
+
+    /* Filter bar */
+    .filter-bar {
+      background: var(--white);
+      border-bottom: 1.5px solid var(--gray-200);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 68px;
+      z-index: 50;
+    }
+    .filter-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.45rem 1.1rem;
+      border-radius: 50px;
+      border: 1.5px solid var(--gray-200);
+      background: var(--white);
+      color: var(--gray-700);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--red);
+      color: var(--white);
+      border-color: var(--red);
+    }
+
+    /* Product grid (full) */
+    .products-section { background: var(--cream); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.75rem;
+      margin-top: 2.5rem;
+    }
+
+    /* Product CTA */
+    .product-cta {
+      background: linear-gradient(135deg, var(--gold), #B8902B);
+      padding: 4.5rem 2rem;
+      text-align: center;
+    }
+    .product-cta .section-title { color: var(--white); }
+    .product-cta p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.05rem;
+      margin: 0.8rem 0 2rem;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .product-cta .btn-primary {
+      background: var(--red-dark);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(92,15,15,0.35);
+    }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal {
+      background: var(--white);
+      border-radius: 20px;
+      max-width: 620px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+      transform: scale(0.94) translateY(16px);
+      transition: transform 0.28s ease;
+    }
+    .modal-overlay.open .modal { transform: scale(1) translateY(0); }
+    .modal-img {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border-radius: 20px 20px 0 0;
+    }
+    .modal-img img { width: 100%; height: 100%; object-fit: cover; }
+    .modal-body { padding: 1.75rem 2rem 2rem; }
+    .modal-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+    .modal-title {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--red-dark);
+      margin-bottom: 0.5rem;
+    }
+    .modal-price {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+    .modal-price span { font-size: 0.9rem; font-family: 'Sarabun'; font-weight: 400; color: var(--gray-500); }
+    .modal-desc { font-size: 0.92rem; color: var(--gray-700); line-height: 1.7; margin-bottom: 1.5rem; }
+    .modal-specs {
+      background: var(--gray-100);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-spec-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .modal-spec-row:last-child { border-bottom: none; }
+    .modal-spec-label { color: var(--gray-500); font-weight: 500; }
+    .modal-spec-value { color: var(--gray-900); font-weight: 600; text-align: right; }
+    .modal-actions { display: flex; gap: 1rem; }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: background var(--transition);
+      border: none;
+    }
+    .modal-close:hover { background: var(--gold-pale); }
+    .modal-img-wrap { position: relative; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero-container { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-image-wrap { order: -1; }
+      .hero-img-frame { max-width: 460px; margin: 0 auto; }
+      .hero-title { font-size: clamp(1.8rem, 6vw, 2.8rem); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .steps::before { display: none; }
+    }
+    @media (max-width: 640px) {
+      .navbar-nav { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 3.5rem 1.25rem; }
+      .navbar { padding: 0 1.25rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero { padding: 3rem 1.25rem; }
+      .products-hero { padding: 3rem 1.25rem; }
+      .hero-stats { gap: 1.2rem; }
+      .modal-body { padding: 1.25rem 1.25rem 1.5rem; }
+      .modal-actions { flex-direction: column; }
+      .filter-bar { padding: 0.75rem 1.25rem; }
+    }
+
+    /* ===== SCROLL FADE-IN ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
+  <div class="modal" id="modal-box">
+    <div class="modal-img-wrap">
+      <div class="modal-img">
+        <img id="modal-img" src="" alt="" />
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="ปิด">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-badges" id="modal-badges"></div>
+      <div class="modal-title" id="modal-name"></div>
+      <div class="modal-price" id="modal-price"></div>
+      <div class="modal-desc" id="modal-desc"></div>
+      <div class="modal-specs" id="modal-specs"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" style="flex:1" onclick="closeModal()">📞 ติดต่อสั่งซื้อ</button>
+        <button class="btn btn-outline" onclick="closeModal()">ปิด</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     PAGE 1: HOME
+============================ -->
+<div class="page active" id="page-home">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-logo" onclick="goTo('home')">
+      <div class="navbar-logo-icon">🥩</div>
+      <div class="navbar-logo-text">
+        Ready-หมูกรอบ
+        <span>Premium Crispy Pork</span>
+      </div>
+    </div>
+    <ul class="navbar-nav">
+      <li><a href="#" onclick="goTo('home');return false;">หน้าแรก</a></li>
+      <li><button onclick="goTo('products')">สินค้า</button></li>
+      <li><a href="#features-section">จุดเด่น</a></li>
+      <li><a href="#reviews-section">รีวิว</a></li>
+      <li><a href="#footer-home">ติดต่อ</a></li>
+      <li><button class="navbar-cta" onclick="goTo('products')">ดูสินค้าทั้งหมด →</button></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMobileMenu('mobile-menu-home')" aria-label="เมนู">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu-home">
+    <a href="#" onclick="goTo('home');return false;">หน้าแรก</a>
+    <button onclick="goTo('products');closeMobileMenus()">สินค้า</button>
+    <a href="#features-section" onclick="closeMobileMenus()">จุดเด่น</a>
+    <a href="#reviews-section" onclick="closeMobileMenus()">รีวิว</a>
+    <a href="#footer-home" onclick="closeMobileMenus()">ติดต่อ</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-label">🏆 พรีเมียมสำหรับร้านอาหาร</div>
+        <h1 class="hero-title">
+          หมูกรอบคุณภาพ<br/>
+          <span class="accent">พร้อมขายต่อ</span>
+        </h1>
+        <p class="hero-desc">
+          หมูกรอบกึ่งสำเร็จรูปและหมูกรอบทอดรอบแรก คุณภาพพรีเมียม เหมาะสำหรับร้านอาหาร
+          ร้านข้าวหมูแดง ร้านก๋วยเตี๋ยว และผู้ค้าส่งที่ต้องการประหยัดเวลาเตรียมของ
+          พร้อมลดต้นทุนค่าแรงและค่าวัตถุดิบ
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-gold" onclick="goTo('products')">🛒 ดูสินค้าทั้งหมด</button>
+          <a href="#footer-home" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.45)">📞 ติดต่อเรา</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">500+</div>
+            <div class="hero-stat-label">ร้านอาหาร<br/>ที่ไว้วางใจเรา</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">10 ปี</div>
+            <div class="hero-stat-label">ประสบการณ์<br/>ในวงการ</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">99%</div>
+            <div class="hero-stat-label">ลูกค้า<br/>สั่งซ้ำ</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image-wrap">
+        <div class="hero-img-frame">
+          <img
+            src="https://images.deliveryhero.io/image/fd-th/LH/gzo7-listing.jpg"
+            alt="หมูกรอบพรีเมียม"
+            loading="eager"
+          />
+        </div>
+        <div class="hero-img-badge">
+          <span class="badge-big">หมูกรอบ</span>
+          <span class="badge-small">คุณภาพพรีเมียม</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features-section">
+    <div class="container">
+      <div style="text-align:center">
+        <div class="section-label">จุดเด่นของเรา</div>
+        <h2 class="section-title">ทำไมต้องเลือก หมูกรอบ-Ready?</h2>
+        <p class="section-subtitle" style="margin:0 auto">คัดสรรวัตถุดิบอย่างพิถีพิถัน ผ่านกระบวนการผลิตที่ได้มาตรฐาน เพื่อให้ร้านของคุณได้ผลลัพธ์ที่ดีที่สุดทุกครั้ง</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🥓</div>
+          <div class="feature-title">หนังฟูกรอบทุกชิ้น</div>
+          <p class="feature-desc">เทคนิคการทำหมูกรอบเฉพาะตัว ให้หนังฟูกรอบสม่ำเสมอทุกชิ้น ลูกค้าประทับใจแน่นอน</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">ทำงานเร็วขึ้นหลายเท่า</div>
+          <p class="feature-desc">ลดเวลาเตรียมวัตถุดิบ ทอดซ้ำได้ทันที ประหยัดแรงงานและลดค่าใช้จ่ายในครัว</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🏪</div>
+          <div class="feature-title">เหมาะทุกประเภทร้าน</div>
+          <p class="feature-desc">ตอบโจทย์ทั้งร้านข้าวหมูแดง ร้านก๋วยเตี๋ยว ร้านอาหารตามสั่ง และร้านบุฟเฟ่ต์</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">📦</div>
+          <div class="feature-title">บรรจุภัณฑ์สะอาดมาตรฐาน</div>
+          <p class="feature-desc">บรรจุใต้สุญญากาศ ปลอดภัย สะอาด ยืดอายุได้นาน พร้อมส่งถึงร้านทั่วกรุงเทพและปริมณฑล</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <div class="container">
+      <div style="text-align:center">
+        <div class="section-label">วิธีการใช้งาน</div>
+        <h2 class="section-title">3 ขั้นตอนง่าย พร้อมขายได้เลย</h2>
+      </div>
+      <div class="steps">
+        <div class="step fade-in">
+          <div class="step-num">1</div>
+          <span class="step-icon">📦</span>
+          <div class="step-title">รับสินค้า</div>
+          <p class="step-desc">สั่งออนไลน์หรือโทรสั่งได้เลย มีบริการส่งถึงหน้าร้านทุกวัน</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-num">2</div>
+          <span class="step-icon">🔥</span>
+          <div class="step-title">ทอดซ้ำ / ผัดต่อ</div>
+          <p class="step-desc">ทอดซ้ำในน้ำมันร้อนเพียง 3–5 นาที หนังฟูกรอบทันที ไม่ต้องเตรียมใหม่</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-num">3</div>
+          <span class="step-icon">💰</span>
+          <div class="step-title">พร้อมขาย ทำกำไร</div>
+          <p class="step-desc">ได้กำไรดี ต้นทุนต่ำ ลูกค้าประทับใจ สั่งซ้ำแน่นอน</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews-section">
+    <div class="container">
+      <div style="text-align:center">
+        <div class="section-label">รีวิวจากลูกค้า</div>
+        <h2 class="section-title">ที่ร้านไว้ใจ Ready-หมูกรอบ</h2>
+        <p class="section-subtitle" style="margin:0 auto">เสียงจากเจ้าของร้านอาหารที่ใช้สินค้าของเราจริง</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card fade-in">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"ใช้มาได้ 2 ปีแล้ว หมูกรอบได้มาตรฐานทุกชิ้น หนังกรอบสม่ำเสมอ ลูกค้าประจำชมตลอด แนะนำมากครับ"</p>
+          <div class="review-author">
+            <div class="review-avatar">
+              <img src="https://i.pravatar.cc/80?img=12" alt="ลูกค้า" />
+            </div>
+            <div>
+              <div class="review-name">คุณอนุชา ม.</div>
+              <div class="review-role">เจ้าของร้านข้าวหมูแดง ย่านลาดพร้าว</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card fade-in">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"ประหยัดเวลาได้มากค่ะ เมื่อก่อนต้องเตรียมหมูกรอบเองตั้งแต่เช้า ตอนนี้แค่ทอดซ้ำก็พร้อมเสิร์ฟได้เลย คุณภาพดีสม่ำเสมอ"</p>
+          <div class="review-author">
+            <div class="review-avatar">
+              <img src="https://i.pravatar.cc/80?img=47" alt="ลูกค้า" />
+            </div>
+            <div>
+              <div class="review-name">คุณนภา ว.</div>
+              <div class="review-role">เจ้าของร้านก๋วยเตี๋ยว รังสิต</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card fade-in">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"สั่งครั้งละ 20 กิโลทุกอาทิตย์ ส่งตรงเวลาทุกครั้ง คุณภาพดีสม่ำเสมอ ต้นทุนลดลงชัดเจน ธุรกิจขยายได้เร็วขึ้นมากครับ"</p>
+          <div class="review-author">
+            <div class="review-avatar">
+              <img src="https://i.pravatar.cc/80?img=33" alt="ลูกค้า" />
+            </div>
+            <div>
+              <div class="review-name">คุณวิชัย ท.</div>
+              <div class="review-role">เจ้าของร้านอาหารตามสั่ง 3 สาขา</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="featured-products">
+    <div class="container">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+        <div>
+          <div class="section-label">สินค้าแนะนำ</div>
+          <h2 class="section-title">ขายดีประจำสัปดาห์</h2>
+        </div>
+        <button class="btn btn-outline" onclick="goTo('products')">ดูสินค้าทั้งหมด →</button>
+      </div>
+      <div class="product-row">
+        <div class="product-card fade-in" data-id="1">
+          <div class="product-card-img">
+            <img src="https://food.mthai.com/app/uploads/2014/05/fried-pork-belly1.jpg" alt="หมูกรอบทอดรอบแรก" loading="lazy" />
+            <div class="product-card-badges">
+              <span class="badge badge-red">ขายดี</span>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-name">หมูกรอบทอดรอบแรก (10 กก.)</div>
+            <p class="product-desc">พร้อมทอดซ้ำทันที หนังฟูกรอบ เนื้อนุ่ม รสชาติดี</p>
+            <div class="product-footer">
+              <div class="product-price">฿850 <span>/ แพ็ก</span></div>
+              <div class="product-actions">
+                <button class="btn btn-outline btn-sm" onclick="openModal(1)">รายละเอียด</button>
+                <button class="btn btn-primary btn-sm">สั่งซื้อ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-card fade-in" data-id="2">
+          <div class="product-card-img">
+            <img src="https://www.pitchameat.com/wp-content/uploads/2022/10/1.%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3%E0%B8%97%E0%B8%AD%E0%B8%94%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%81%E0%B8%A3%E0%B8%AD%E0%B8%9A.jpg" alt="หมูกรอบพร้อมขาย" loading="lazy" />
+            <div class="product-card-badges">
+              <span class="badge badge-gold">แนะนำ</span>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-name">หมูกรอบพร้อมขาย (5 กก.)</div>
+            <p class="product-desc">ทอดสำเร็จแล้ว คงความกรอบได้นาน เหมาะส่งตรงขาย</p>
+            <div class="product-footer">
+              <div class="product-price">฿620 <span>/ แพ็ก</span></div>
+              <div class="product-actions">
+                <button class="btn btn-outline btn-sm" onclick="openModal(2)">รายละเอียด</button>
+                <button class="btn btn-primary btn-sm">สั่งซื้อ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-card fade-in" data-id="3">
+          <div class="product-card-img">
+            <img src="https://food.mthai.com/app/uploads/2018/03/Crispy-Chashu.jpg" alt="แพ็กส่งร้าน" loading="lazy" />
+            <div class="product-card-badges">
+              <span class="badge badge-green">พร้อมส่ง</span>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-name">แพ็กส่งร้านครบเซ็ต (20 กก.)</div>
+            <p class="product-desc">เหมาะสำหรับร้านอาหารขนาดกลาง-ใหญ่ ราคาส่งพิเศษ</p>
+            <div class="product-footer">
+              <div class="product-price">฿1,580 <span>/ แพ็ก</span></div>
+              <div class="product-actions">
+                <button class="btn btn-outline btn-sm" onclick="openModal(3)">รายละเอียด</button>
+                <button class="btn btn-primary btn-sm">สั่งซื้อ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer-home">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo-text">🥩 Ready-หมูกรอบ</div>
+        <p class="footer-desc">ผู้ผลิตและจำหน่ายหมูกรอบคุณภาพพรีเมียม สำหรับร้านอาหาร ผู้ค้าส่ง และธุรกิจอาหารทุกประเภท ด้วยประสบการณ์กว่า 10 ปี</p>
+        <div class="footer-social">
+          <a href="#" title="Facebook">📘</a>
+          <a href="#" title="LINE">💬</a>
+          <a href="#" title="Instagram">📷</a>
+          <a href="#" title="TikTok">🎵</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">เมนูหลัก</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="goTo('home');return false;">หน้าแรก</a></li>
+          <li><a href="#" onclick="goTo('products');return false;">สินค้าทั้งหมด</a></li>
+          <li><a href="#features-section">จุดเด่น</a></li>
+          <li><a href="#reviews-section">รีวิวลูกค้า</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">สินค้า</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="goTo('products');return false;">หมูกรอบทอดรอบแรก</a></li>
+          <li><a href="#" onclick="goTo('products');return false;">หมูกรอบพร้อมขาย</a></li>
+          <li><a href="#" onclick="goTo('products');return false;">แพ็กส่งร้าน</a></li>
+          <li><a href="#" onclick="goTo('products');return false;">สั่งทำพิเศษ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">ติดต่อเรา</div>
+        <div class="footer-contact">
+          <div class="footer-contact-item"><span class="icon">📞</span><span>063-601-2099<br/>085-541-7053</span></div>
+          <div class="footer-contact-item"><span class="icon">💬</span><span>LINE: @mookrob_maha</span></div>
+          <div class="footer-contact-item"><span class="icon">📍</span><span>นครสวรรค์ อำเภอเมือง 60000</span></div>
+          <div class="footer-contact-item"><span class="icon">🕐</span><span>จ.–ส. 06:00–18:00 น.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2567 Ready-หมูกรอบ | สงวนลิขสิทธิ์</span>
+      <span>ออกแบบด้วย ❤️ เพื่อธุรกิจอาหารไทย</span>
+    </div>
+  </footer>
+
+</div><!-- end page-home -->
+
+
+<!-- ============================
+     PAGE 2: PRODUCTS
+============================ -->
+<div class="page" id="page-products">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-logo" onclick="goTo('home')">
+      <div class="navbar-logo-icon">🥩</div>
+      <div class="navbar-logo-text">
+        Ready-หมูกรอบ
+        <span>Premium Crispy Pork</span>
+      </div>
+    </div>
+    <ul class="navbar-nav">
+      <li><button onclick="goTo('home')">หน้าแรก</button></li>
+      <li><button onclick="goTo('products')" style="color:var(--red);font-weight:700">สินค้า</button></li>
+      <li><a href="#footer-products">ติดต่อ</a></li>
+      <li><button class="navbar-cta">📞 สั่งซื้อเลย</button></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMobileMenu('mobile-menu-products')" aria-label="เมนู">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu-products">
+    <button onclick="goTo('home');closeMobileMenus()">← กลับหน้าหลัก</button>
+    <a href="#footer-products" onclick="closeMobileMenus()">ติดต่อเรา</a>
+  </div>
+
+  <!-- PRODUCTS HERO -->
+  <section class="products-hero">
+    <div class="products-hero-inner">
+      <div class="section-label">สินค้าทั้งหมด</div>
+      <h1 class="section-title" style="font-size:clamp(1.8rem,4vw,2.8rem)">หมูกรอบคุณภาพพรีเมียม</h1>
+      <p class="section-subtitle">เหมาะสำหรับร้านอาหาร ร้านข้าว ร้านก๋วยเตี๋ยว และผู้ค้าส่งทุกขนาด เราพร้อมดูแลธุรกิจของคุณ</p>
+    </div>
+  </section>
+
+  <!-- FILTER -->
+  <div class="filter-bar">
+    <div class="filter-bar-inner">
+      <button class="filter-btn active" onclick="filterProducts(this, 'all')">ทั้งหมด</button>
+      <button class="filter-btn" onclick="filterProducts(this, 'raw')">หมูกรอบทอดรอบแรก</button>
+      <button class="filter-btn" onclick="filterProducts(this, 'ready')">หมูกรอบพร้อมขาย</button>
+      <button class="filter-btn" onclick="filterProducts(this, 'pack')">แพ็กส่งร้าน</button>
+    </div>
+  </div>
+
+  <!-- PRODUCTS SECTION -->
+  <section class="products-section">
+    <div class="container">
+      <div id="product-count" style="font-size:0.85rem;color:var(--gray-500);margin-bottom:0.5rem">แสดงสินค้าทั้งหมด 6 รายการ</div>
+      <div class="products-grid" id="products-grid">
+
+        <!-- สินค้า 1 -->
+        <div class="product-card fade-in" data-category="raw">
+          <div class="product-card-img">
+            <img src="https://images.deliveryhero.io/image/fd-th/LH/gzo7-listing.jpg" alt="หมูกรอบทอดรอบแรก S" loading="lazy" />
+            <div class="product-card-badges">
+              <span class="badge badge-red">ขายดี</span>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-name">หมูกรอบทอดรอบแรก (10 กก.)</div>
+            <p class="product-desc">สูตรดั้งเดิม หนังกรอบทุกชิ้น พร้อมทอดซ้ำ 3–5 นาที</p>
+            <div class="product-footer">
+              <div class="product-price">฿850 <span>/ แพ็ก</span></div>
+              <div class="product-actions">
+                <button class="btn btn-outline btn-sm" onclick="openModal(1)">รายละเอียด</button>
+                <button class="btn btn-primary btn-sm">สั่งซื้อ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- สินค้า 2 -->
+        <div class="product-card fade-in" data-category="ready">
+          <div class="product-card-img">
+            <img src="https://images.deliveryhero.io/image/fd-th/LH/gzo7-listing.jpg" alt="หมูกรอบพร้อมขาย" loading="lazy" />
+            <div class="product-card-badges">
+              <span class="badge badge-gold">แนะนำ</span>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-name">หมูกรอบพร้อมขาย (5 กก.)</div>
+            <p class="product-desc">ทอดสำเร็จแล้ว คงความกรอบได้นานกว่า 4 ชั่วโมง</p>
+            <div class="product-footer">
+              <div class="product-price">฿620 <span>/ แพ็ก</span></div>
+              <div class="product-actions">
+                <button class="btn btn-outline btn-sm" onclick="openModal(2)">รายละเอียด</button>
+                <button class="btn btn-primary btn-sm">สั่งซื้อ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- สินค้า 3 -->
+        <div class="product-card fade-in" data-category="pack">
+          <div class="product-card-img">
+            <img src="https://images.deliveryhero.io/image/fd-th/LH/gzo7-listing.jpg" alt="แพ็กส่งร้าน" loading="lazy" />
+            <div class="product-card-badges">
+              <span class="badge badge-green">พร้อมส่ง</span>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-name">แพ็กส่งร้านครบเซ็ต (20 กก.)</div>
+            <p class="product-desc">เหมาะสำหรับร้านอาหารขนาดกลาง-ใหญ่ รวมหมูกรอบ 2 ประเภท</p>
+            <div class="product-footer">
+              <div class="product-price">฿1,580 <span>/ แพ็ก</span></div>
+              <div class="product-actions">
+                <button class="btn btn-outline btn-sm" onclick="openModal(3)">รายละเอียด</button>
+                <button class="btn btn-primary btn-sm">สั่งซื้อ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- สินค้า 4 -->
+        <div class="product-card fade-in" data-category="raw">
+          <div class="product-card-img">
+            <img src="https://images.deliveryhero.io/image/fd-th/LH/gzo7-listing.jpg" alt="หมูกรอบทอดรอบแรก พิเศษ" loading="lazy" />
+            <div class="product-card-badges">
+              <span class="badge badge-red">ขายดี</span>
+              <span class="badge badge-gold">ใหม่</span>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-name">หมูกรอบทอดรอบแรก พิเศษ (15 กก.)</div>
+            <p class="product-desc">สูตรพิเศษ เพิ่มเครื่องเทศ หอมเข้มขึ้น เหมาะกับร้านอาหารระดับพรีเมียม</p>
+            <div class="product-footer">
+              <div class="product-price">฿1,250 <span>/ แพ็ก</span></div>
+              <div class="product-actions">
+                <button class="btn btn-outline btn-sm" onclick="openModal(4)">รายละเอียด</button>
+                <button class="btn btn-primary btn-sm">สั่งซื้อ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- สินค้า 5 -->
+        <div class="product-card fade-in" data-category="ready">
+          <div class="product-card-img">
+            <img src="https://images.deliveryhero.io/image/fd-th/LH/gzo7-listing.jpg" alt="หมูกรอบพร้อมขาย เล็ก" loading="lazy" />
+            <div class="product-card-badges">
+              <span class="badge badge-green">พร้อมส่ง</span>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-name">หมูกรอบพร้อมขาย ไซส์เล็ก (2 กก.)</div>
+            <p class="product-desc">เหมาะสำหรับร้านขนาดเล็กหรือทดลองสินค้า สั่งขั้นต่ำ 5 แพ็ก</p>
+            <div class="product-footer">
+              <div class="product-price">฿280 <span>/ แพ็ก</span></div>
+              <div class="product-actions">
+                <button class="btn btn-outline btn-sm" onclick="openModal(5)">รายละเอียด</button>
+                <button class="btn btn-primary btn-sm">สั่งซื้อ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- สินค้า 6 -->
+        <div class="product-card fade-in" data-category="pack">
+          <div class="product-card-img">
+            <img src="https://images.deliveryhero.io/image/fd-th/LH/gzo7-listing.jpg" alt="แพ็กส่งร้านรายเดือน" loading="lazy" />
+            <div class="product-card-badges">
+              <span class="badge badge-gold">แนะนำ</span>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-name">แพ็กส่งร้านรายเดือน (80 กก./เดือน)</div>
+            <p class="product-desc">สมัครรับสินค้ารายเดือน ราคาพิเศษสุด ส่งทุกสัปดาห์</p>
+            <div class="product-footer">
+              <div class="product-price">฿5,200 <span>/ เดือน</span></div>
+              <div class="product-actions">
+                <button class="btn btn-outline btn-sm" onclick="openModal(6)">รายละเอียด</button>
+                <button class="btn btn-primary btn-sm">สั่งซื้อ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT CTA -->
+  <section class="product-cta">
+    <div class="container">
+      <h2 class="section-title">สนใจสั่งซื้อจำนวนมาก?</h2>
+      <p>ติดต่อเราได้โดยตรง มีราคาพิเศษสำหรับการสั่งซื้อจำนวนมาก และบริการจัดส่งทั่วกรุงเทพและปริมณฑล</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary">📞 โทร 063-601-2099</button>
+        <button class="btn" style="background:rgba(255,255,255,0.2);color:#fff;border:2px solid rgba(255,255,255,0.5);border-radius:50px;padding:0.7rem 1.8rem;font-size:0.95rem;font-weight:600;transition:background 0.3s" onmouseover="this.style.background='rgba(255,255,255,0.35)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">💬 LINE: @mookrob_maha</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer-products">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo-text">🥩 Ready-หมูกรอบ</div>
+        <p class="footer-desc">ผู้ผลิตและจำหน่ายหมูกรอบคุณภาพพรีเมียม สำหรับร้านอาหาร ผู้ค้าส่ง และธุรกิจอาหารทุกประเภท</p>
+        <div class="footer-social">
+          <a href="#" title="Facebook">📘</a>
+          <a href="#" title="LINE">💬</a>
+          <a href="#" title="Instagram">📷</a>
+          <a href="#" title="TikTok">🎵</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">เมนูหลัก</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="goTo('home');return false;">หน้าแรก</a></li>
+          <li><a href="#" onclick="goTo('products');return false;">สินค้าทั้งหมด</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">สินค้า</div>
+        <ul class="footer-links">
+          <li><a href="#">หมูกรอบทอดรอบแรก</a></li>
+          <li><a href="#">หมูกรอบพร้อมขาย</a></li>
+          <li><a href="#">แพ็กส่งร้าน</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">ติดต่อเรา</div>
+        <div class="footer-contact">
+          <div class="footer-contact-item"><span class="icon">📞</span><span>063-601-2099</span></div>
+          <div class="footer-contact-item"><span class="icon">💬</span><span>LINE: @mookrob_maha</span></div>
+          <div class="footer-contact-item"><span class="icon">📍</span><span>เขตมีนบุรี กรุงเทพมหานคร</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2567 Ready-หมูกรอบ | สงวนลิขสิทธิ์</span>
+      <span>ออกแบบด้วย ❤️ เพื่อธุรกิจอาหารไทย</span>
+    </div>
+  </footer>
+
+</div><!-- end page-products -->
+
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+  // ===== DATA: รายละเอียดสินค้า =====
+  const products = {
+    1: {
+      name: 'หมูกรอบทอดรอบแรก (10 กก.)',
+      price: '฿850',
+      unit: '/ แพ็ก',
+      badges: [{ text: 'ขายดี', cls: 'badge-red' }],
+      img: 'https://images.deliveryhero.io/image/fd-th/LH/gzo7-listing.jpg',
+      desc: 'หมูกรอบที่ผ่านการทอดรอบแรกมาแล้ว หนังกรอบสม่ำเสมอทุกชิ้น เพียงแค่นำไปทอดซ้ำในน้ำมันร้อน 3–5 นาที ก็พร้อมเสิร์ฟได้ทันที ประหยัดเวลาและแรงงานในครัวได้อย่างมาก',
+      specs: [
+        ['น้ำหนัก', '10 กิโลกรัม / แพ็ก'],
+        ['การเก็บรักษา', 'แช่แข็ง -18°C ได้ 3 เดือน'],
+        ['วิธีทอด', 'ทอดซ้ำน้ำมัน 180°C, 3–5 นาที'],
+        ['เหมาะกับ', 'ร้านข้าวหมูแดง, ร้านก๋วยเตี๋ยว'],
+        ['MOQ', 'ขั้นต่ำ 1 แพ็ก'],
+      ]
+    },
+    2: {
+      name: 'หมูกรอบพร้อมขาย (5 กก.)',
+      price: '฿620',
+      unit: '/ แพ็ก',
+      badges: [{ text: 'แนะนำ', cls: 'badge-gold' }],
+      img: 'https://images.deliveryhero.io/image/fd-th/LH/gzo7-listing.jpg',
+      desc: 'หมูกรอบที่ผ่านการทอดจนสุกพร้อมขายแล้ว คงความกรอบได้นานกว่า 4 ชั่วโมง หลังจากเปิดแพ็ก เหมาะสำหรับร้านที่ต้องการความสะดวกสูงสุด',
+      specs: [
+        ['น้ำหนัก', '5 กิโลกรัม / แพ็ก'],
+        ['การเก็บรักษา', 'ตู้เย็น 4°C ได้ 5 วัน'],
+        ['วิธีอุ่น', 'อุ่นในเตาอบ 180°C, 5 นาที'],
+        ['เหมาะกับ', 'ทุกประเภทร้านอาหาร'],
+        ['MOQ', 'ขั้นต่ำ 2 แพ็ก'],
+      ]
+    },
+    3: {
+      name: 'แพ็กส่งร้านครบเซ็ต (20 กก.)',
+      price: '฿1,580',
+      unit: '/ แพ็ก',
+      badges: [{ text: 'พร้อมส่ง', cls: 'badge-green' }],
+      img: 'https://images.deliveryhero.io/image/fd-th/LH/gzo7-listing.jpg',
+      desc: 'แพ็กครบเซ็ตสำหรับร้านอาหารขนาดกลาง-ใหญ่ รวมทั้งหมูกรอบทอดรอบแรก 10 กก. และหมูกรอบพร้อมขาย 10 กก. ราคาพิเศษกว่าซื้อแยก พร้อมบริการส่งถึงหน้าร้าน',
+      specs: [
+        ['น้ำหนักรวม', '20 กิโลกรัม / เซ็ต'],
+        ['รายละเอียด', 'ทอดรอบแรก 10 กก. + พร้อมขาย 10 กก.'],
+        ['การจัดส่ง', 'ส่งทุกวัน จ.–ส. ก่อน 09:00 น.'],
+        ['เหมาะกับ', 'ร้านอาหารขนาดกลาง-ใหญ่'],
+        ['MOQ', 'ขั้นต่ำ 1 เซ็ต'],
+      ]
+    },
+    4: {
+      name: 'หมูกรอบทอดรอบแรก พิเศษ (15 กก.)',
+      price: '฿1,250',
+      unit: '/ แพ็ก',
+      badges: [{ text: 'ขายดี', cls: 'badge-red' }, { text: 'ใหม่', cls: 'badge-gold' }],
+      img: 'https://images.deliveryhero.io/image/fd-th/LH/gzo7-listing.jpg',
+      desc: 'สูตรพิเศษใหม่ล่าสุด เพิ่มเครื่องเทศและสมุนไพรคัดสรร ให้กลิ่นหอมเข้มและรสชาติโดดเด่น เหมาะสำหรับร้านอาหารระดับพรีเมียมที่ต้องการความแตกต่าง',
+      specs: [
+        ['น้ำหนัก', '15 กิโลกรัม / แพ็ก'],
+        ['การเก็บรักษา', 'แช่แข็ง -18°C ได้ 3 เดือน'],
+        ['วิธีทอด', 'ทอดซ้ำน้ำมัน 180°C, 4–6 นาที'],
+        ['เหมาะกับ', 'ร้านอาหารระดับพรีเมียม, โรงแรม'],
+        ['MOQ', 'ขั้นต่ำ 1 แพ็ก'],
+      ]
+    },
+    5: {
+      name: 'หมูกรอบพร้อมขาย ไซส์เล็ก (2 กก.)',
+      price: '฿280',
+      unit: '/ แพ็ก',
+      badges: [{ text: 'พร้อมส่ง', cls: 'badge-green' }],
+      img: 'https://images.deliveryhero.io/image/fd-th/LH/gzo7-listing.jpg',
+      desc: 'แพ็กขนาดเล็กสำหรับร้านขนาดเล็กหรือผู้ที่ต้องการทดลองสินค้า สั่งขั้นต่ำ 5 แพ็ก รับประกันคุณภาพเหมือนกันทุกขนาด',
+      specs: [
+        ['น้ำหนัก', '2 กิโลกรัม / แพ็ก'],
+        ['การเก็บรักษา', 'ตู้เย็น 4°C ได้ 5 วัน'],
+        ['วิธีอุ่น', 'อุ่นในเตาอบ 180°C, 5 นาที'],
+        ['เหมาะกับ', 'ร้านขนาดเล็ก, ทดลองสินค้า'],
+        ['MOQ', 'ขั้นต่ำ 5 แพ็ก'],
+      ]
+    },
+    6: {
+      name: 'แพ็กส่งร้านรายเดือน (80 กก./เดือน)',
+      price: '฿5,200',
+      unit: '/ เดือน',
+      badges: [{ text: 'แนะนำ', cls: 'badge-gold' }],
+      img: 'https://images.deliveryhero.io/image/fd-th/LH/gzo7-listing.jpg',
+      desc: 'สมัครรับสินค้ารายเดือน ส่งทุกสัปดาห์ สัปดาห์ละ 20 กก. ราคาพิเศษสุด ประหยัดกว่าซื้อแยกถึง 15% พร้อมบริการดูแลหลังการขายโดยทีมงานมืออาชีพ',
+      specs: [
+        ['ปริมาณรวม', '80 กิโลกรัม / เดือน'],
+        ['รูปแบบส่ง', 'ส่งทุกสัปดาห์ สัปดาห์ละ 20 กก.'],
+        ['สัญญา', 'ต่อเนื่ม 3 เดือนขึ้นไป'],
+        ['เหมาะกับ', 'ร้านอาหารที่ต้องการสินค้าสม่ำเสมอ'],
+        ['ส่วนลด', 'ประหยัด ~15% จากราคาปกติ'],
+      ]
+    },
+  };
+
+  // ===== PAGE NAVIGATION =====
+  let currentPage = 'home';
+
+  function goTo(page) {
+    if (page === currentPage) return;
+
+    const fromEl = document.getElementById('page-' + currentPage);
+    const toEl   = document.getElementById('page-' + page);
+
+    // Start leaving animation on current page
+    fromEl.classList.add('leaving');
+    fromEl.classList.remove('active');
+
+    // Activate new page
+    setTimeout(() => {
+      toEl.classList.add('active');
+      toEl.scrollTop = 0;        // reset scroll on new page
+      fromEl.classList.remove('leaving');
+
+      // Trigger fade-in animations on the new page
+      triggerFadeIns(toEl);
+    }, 50);
+
+    currentPage = page;
+    closeMobileMenus();
+  }
+
+  // ===== MOBILE MENU =====
+  function toggleMobileMenu(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('open');
+  }
+  function closeMobileMenus() {
+    document.querySelectorAll('.mobile-menu').forEach(m => m.classList.remove('open'));
+  }
+
+  // ===== PRODUCT FILTER =====
+  function filterProducts(btn, category) {
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cards = document.querySelectorAll('#products-grid .product-card');
+    let visible = 0;
+    cards.forEach(card => {
+      if (category === 'all' || card.dataset.category === category) {
+        card.style.display = '';
+        visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    document.getElementById('product-count').textContent =
+      'แสดงสินค้า ' + visible + ' รายการ' + (category !== 'all' ? ' ในหมวดที่เลือก' : 'ทั้งหมด');
+  }
+
+  // ===== MODAL =====
+  function openModal(id) {
+    const p = products[id];
+    if (!p) return;
+
+    document.getElementById('modal-img').src = p.img;
+    document.getElementById('modal-img').alt = p.name;
+    document.getElementById('modal-name').textContent = p.name;
+    document.getElementById('modal-price').innerHTML = p.price + ' <span>' + p.unit + '</span>';
+    document.getElementById('modal-desc').textContent = p.desc;
+
+    // Badges
+    const badgesEl = document.getElementById('modal-badges');
+    badgesEl.innerHTML = p.badges.map(b =>
+      `<span class="badge ${b.cls}">${b.text}</span>`
+    ).join('');
+
+    // Specs
+    const specsEl = document.getElementById('modal-specs');
+    specsEl.innerHTML = p.specs.map(([label, val]) =>
+      `<div class="modal-spec-row">
+        <span class="modal-spec-label">${label}</span>
+        <span class="modal-spec-value">${val}</span>
+      </div>`
+    ).join('');
+
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Close modal on overlay click
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  // Close modal on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // ===== SCROLL FADE-IN =====
+  function triggerFadeIns(container) {
+    const items = (container || document).querySelectorAll('.fade-in:not(.visible)');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, i * 80);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      items.forEach(el => obs.observe(el));
+    } else {
+      // Fallback: make all visible
+      items.forEach(el => el.classList.add('visible'));
+    }
+  }
+
+  // Initialize on load
+  window.addEventListener('load', () => {
+    triggerFadeIns(document.getElementById('page-home'));
+  });
+</script>
+
+</body>
+</html>
